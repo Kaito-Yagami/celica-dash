@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A rev counter inside the adaptive icon's safe circle (66 of 108): the arc, its hot zone, the needle. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <group android:scaleX="0.64" android:scaleY="0.64" android:pivotX="54" android:pivotY="54">
+        <path android:strokeColor="#C7CACF" android:strokeWidth="6" android:fillColor="#00000000" android:strokeLineCap="butt"
+            android:pathData="M19.36,74 A40,40 0 1,1 88.64,74"/>
+        <path android:strokeColor="#D8433C" android:strokeWidth="6" android:fillColor="#00000000" android:strokeLineCap="butt"
+            android:pathData="M88.64,34 A40,40 0 0,1 88.64,74"/>
+        <path android:strokeColor="#F1EDEA" android:strokeWidth="4" android:fillColor="#00000000" android:strokeLineCap="round"
+            android:pathData="M54,54 L80.5,38.7"/>
+        <path android:fillColor="#F1EDEA" android:pathData="M54,49.5 a4.5,4.5 0 1,0 0.01,0z"/>
+    </group>
+</vector>

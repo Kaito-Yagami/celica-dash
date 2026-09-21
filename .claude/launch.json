@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "helper",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["setup/helper.py"],
+      "port": 8787
+    }
+  ]
+}

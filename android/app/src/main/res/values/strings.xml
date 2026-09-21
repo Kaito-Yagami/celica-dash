@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Celica Dash</string>
+    <string name="install_clicker_desc">Presses Install on the Celica Dash update dialog so a new build from the PC installs with nobody in the car. Touches nothing else.</string>
+</resources>

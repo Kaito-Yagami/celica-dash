@@ -1,0 +1,39 @@
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# the signing key lives in E:\Claude\Keys, never here
+android/keystore.properties
+
+# the release zip and everything RUN ME downloads or generates on a user's PC
+dist/
+setup/tools/
+setup/payload/
+setup/payload.prev-*/
+
+# big regional data made by the dev tools
+tools/map/*.pmtiles
+tools/map/pmtiles.exe
+tools/map/search.idx
+tools/routing/*.osm.pbf
+tools/routing/graph/
+tools/routing/*.zip
+tools/routing/import.log
+tools/faces/*.mp4
+tools/faces/faces.zip
+tools/art/out/
+tools/art/art.zip
+tools/boot/out/
+tools/car/
+tools/emu/
+tools/remote/
+
+# built by tools/routing gradlew fatJar; shipped in the release zip
+setup/bin/
+
+# the owner's Theatre films and cover-art pack, dropped in for the zip; not sources
+setup/extras/
+
+# release output
+dist/

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Celica Dash · setup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/wizard/style.css">
+</head>
+<body>
+<div id="app">
+  <aside id="rail">
+    <div class="brand"><span class="mark">CELICA <b>DASH</b></span><span class="sub">SETUP</span></div>
+    <nav id="steps"></nav>
+    <div class="railfoot" id="railfoot"></div>
+  </aside>
+  <main id="page"></main>
+</div>
+<template id="tpl-welcome">
+  <h1>Welcome</h1>
+  <p class="lead">This wizard prepares everything on the PC, where typing is easy. The unit then fetches it all over Wi-Fi.</p>
+  <ul class="tips">
+    <li><b>Same Wi-Fi.</b> The PC and the head unit must be on one network: park near the house, or bring a laptop to the car on your phone's hotspot.</li>
+    <li><b>Order.</b> Answer the pages here first, then install the app on the unit (page 9), then its own short Setup finds this PC and pulls the map and music.</li>
+    <li><b>Skip freely.</b> Nothing here is final - the unit's Settings has every choice again.</li>
+    <li><b>Leave this window open</b> while the unit fetches. Closing it stops the helper.</li>
+  </ul>
+  <div class="card">
+    <div class="kv"><span>This PC on the Wi-Fi</span><b id="w-ips">…</b></div>
+    <div class="kv"><span>Memory · free disk</span><b id="w-mem">…</b></div>
+    <div class="kv"><span>The app to install</span><b id="w-apk">…</b></div>
+  </div>
+</template>
+
+<template id="tpl-car">
+  <h1>Your car</h1>
+  <p class="lead">What the dash calls it, and what its engine does. A preset fills everything in; change any of it.</p>
+  <div class="choices" data-field="car.preset">
+    <button data-value="celica_2zz">Celica 2ZZ-GE<small>T-Sport · GT-S · SS-II · lift at 6,000</small></button>
+    <button data-value="celica_1zz">Celica 1ZZ-FE<small>140 · GT · SS-I · no lift</small></button>
+    <button data-value="other">Another car<small>starts blank</small></button>
+  </div>
+  <div class="grid2">
+    <label>Name on the strip <input data-field="car.name" placeholder="CELICA *T*-SPORT"><small>Asterisks colour a part: *T* lights the T.</small></label>
+    <label>Small script beside it <input data-field="car.alt" placeholder="セリカ"><small>Blank for none.</small></label>
+  </div>
+  <div class="grid3">
+    <label>Tile label <input data-field="car.code" placeholder="ZZT231"></label>
+    <label>Under it <input data-field="car.sub" placeholder="2ZZ-GE · VVTL-i"></label>
+    <label>Note <input data-field="car.note" placeholder="190 PS · 8,200 RPM / C60 · 6-SPEED"><small>A slash starts a second line.</small></label>
+  </div>
+  <div class="grid3">
+    <label>Redline (rpm) <input data-field="car.redline" type="number" placeholder="8200"></label>
+    <label id="lift-field">Lift or shift point (rpm) <input data-field="car.lift" type="number" placeholder="6000"><small>Where the rev counter turns red.</small></label>
+    <label class="check"><input type="checkbox" data-field="car.noLift"> No hot zone at all<small>The 1ZZ has no lift; nothing turns red.</small></label>
+  </div>
+  <h3>Wireframe</h3>
+  <div class="choices" data-field="car.model">
+    <button data-value="stock">Stock<small>lip spoiler, as built</small></button>
+    <button data-value="wing">GT wing<small>the aftermarket wing</small></button>
+  </div>
+  <details><summary>Gearbox and tyre - for the gear readout</summary>
+    <div class="grid3">
+      <label>Gear ratios, 1st first <input data-field="car.gears" placeholder="3.166, 1.904, 1.392, 1.031, 0.815, 0.725"><small>Blank hides the gear readout.</small></label>
+      <label>Final drive <input data-field="car.final" type="number" step="0.001" placeholder="4.529"></label>
+      <label>Metres per wheel turn <input data-field="car.circumference" type="number" step="0.001" placeholder="1.921"><small>205/50 R16 is 1.921; 195/60 R15 is 1.932.</small></label>
+    </div>
+  </details>
+</template>
+
+<template id="tpl-region">
+  <h1>Where you drive</h1>
+  <p class="lead">Picks the offline map, the routing, the search, where the map opens, and the units.</p>
+  <label>Find your country, state or county <input id="region-q" placeholder="type to search - England, Texas, Bayern…" autocomplete="off"></label>
+  <div id="region-list" class="list"></div>
+  <div class="card" id="region-pick"></div>
+  <h3>Units</h3>
+  <div class="choices" data-field="region.units">
+    <button data-value="uk">Miles · mpg · °C<small>UK</small></button>
+    <button data-value="us">Miles · US mpg · °F<small>US</small></button>
+    <button data-value="metric">Kilometres · L/100 km · °C<small>everywhere else</small></button>
+  </div>
+  <h3>Voice and dates</h3>
+  <div class="choices" data-field="region.locale">
+    <button data-value="en-GB">English (UK)</button><button data-value="en-US">English (US)</button><button data-value="de-DE">Deutsch</button>
+    <button data-value="fr-FR">Français</button><button data-value="es-ES">Español</button><button data-value="it-IT">Italiano</button>
+    <button data-value="nl-NL">Nederlands</button><button data-value="ja-JP">日本語</button>
+  </div>
+</template>
+
+<template id="tpl-look">
+  <h1>The look</h1>
+  <p class="lead">Two looks, any accent, any background. The unit's own Setup shows them live too.</p>
+  <div class="choices" data-field="look.look">
+    <button data-value="ink">Ink<small>soft near-black</small></button>
+    <button data-value="contrast">Contrast<small>true black, hotter red</small></button>
+  </div>
+  <h3>Accent</h3>
+  <div class="swatches" data-field="look.accent" data-swatches="D8433C:Celica red,E5372E:Racing red,E0A040:Amber,5FB8E8:Ice,58C79A:Mint,9B7BEA:Violet,F1EDEA:White"></div>
+  <label class="hex">Or a hex <input data-field="look.accent" placeholder="D8433C" maxlength="7"></label>
+  <h3>Background</h3>
+  <div class="swatches" data-field="look.background" data-swatches="0E0D0F:Ink,000000:Black,0A0F1C:Navy,0A1410:Forest,15171C:Slate,F2EEE8:Paper"></div>
+  <label class="hex">Or a hex <input data-field="look.background" placeholder="0E0D0F" maxlength="7"></label>
+  <label class="check"><input type="checkbox" data-field="look.crt"> Scan lines<small>The dash behind the glass of an old tube.</small></label>
+  <div id="preview" class="preview"><span class="pv-mark">CELICA <i>T</i>-SPORT</span><span class="pv-live">● LIVE</span><span class="pv-data">12 °C · 61 MPH</span></div>
+</template>
+
+<template id="tpl-phone">
+  <h1>Your phone</h1>
+  <p class="lead">Which kind, so the button on the dash opens the right thing.</p>
+  <div class="choices" data-field="phone.mode">
+    <button data-value="carplay">iPhone<small>CarPlay</small></button>
+    <button data-value="android_auto">Android<small>Android Auto</small></button>
+    <button data-value="none">Neither<small>no projection button</small></button>
+  </div>
+  <ul class="tips">
+    <li><b>The unit's own CarPlay / Android Auto app does the work.</b> The dash opens it, and on the common QF units covers its connect screen with its own.</li>
+    <li><b>Music and calls</b> come over the unit's Bluetooth as usual; pair the phone from the dash's Phone tab or the unit's settings.</li>
+    <li id="tip-gps"><b>iPhone GPS.</b> Units hear GPS poorly behind glass. The GPS2IP app on the iPhone can stand in - choose it on the unit under Setup › Phone.</li>
+  </ul>
+</template>
+
+<template id="tpl-maps">
+  <h1>Offline maps</h1>
+  <p class="lead">Made here from OpenStreetMap for <b id="maps-region">your region</b>. Nothing runs in the car; the unit needs no internet.</p>
+  <div class="jobs">
+    <div class="job" data-job="tiles">
+      <div class="jobhead"><b>The map itself</b><span class="est" id="est-tiles"></span><button class="run" data-run="tiles">Make it</button></div>
+      <small>Streets, buildings, places. The big one: a county is ~50 MB, a country a gigabyte or more, an hour or so.</small>
+      <div class="bar"><i></i></div><div class="msg"></div>
+    </div>
+    <div class="job" data-job="routing">
+      <div class="jobhead"><b>Turn-by-turn routing</b><span class="est" id="est-routing"></span><button class="run" data-run="routing">Make it</button></div>
+      <small>Spoken directions to any pin or fuel stop. Needs memory: about 6× the extract's size. A country can take half an hour.</small>
+      <div class="bar"><i></i></div><div class="msg"></div>
+    </div>
+    <div class="job" data-job="search">
+      <div class="jobhead"><b>Places and stops</b><span class="est" id="est-search"></span><button class="run" data-run="search">Make it</button></div>
+      <small>Every town, pub, fuel station and car park, for the search and the icons on the map. Quick.</small>
+      <div class="bar"><i></i></div><div class="msg"></div>
+    </div>
+  </div>
+  <ul class="tips">
+    <li><b>Downloads happen once.</b> The map extract and the tools stay in setup/tools for next time.</li>
+    <li><b>Too big?</b> Pick a state or county on the previous page for routing; the map itself can still be the whole country.</li>
+  </ul>
+</template>
+
+<template id="tpl-music">
+  <h1>Music</h1>
+  <p class="lead">Songs the dash plays by itself, no phone needed. Dropped here, copied to the unit's Music folder.</p>
+  <label>Folder name on the unit <input data-field="music.folder" placeholder="Celica"><small>Music/<i>this</i> on the unit; the vendor's player sees it too.</small></label>
+  <div id="drop" class="drop">
+    <p><b>Drop MP3s or a zip of them here</b> - or <label class="link">choose files<input type="file" id="music-files" multiple accept=".mp3,.m4a,.flac,.ogg,.wav,.aac,.zip"></label> · <label class="link">choose a folder<input type="file" id="music-folder" webkitdirectory multiple></label></p>
+    <div class="bar"><i></i></div><div class="msg" id="upload-msg"></div>
+  </div>
+  <div class="job" data-job="music">
+    <div class="jobhead"><b>Pack them for the unit</b><span class="est" id="music-count"></span><button class="run" data-run="music">Pack</button><button class="quiet" id="music-clear">Clear</button></div>
+    <div class="bar"><i></i></div><div class="msg"></div>
+  </div>
+  <ul class="tips">
+    <li><b>MP3, M4A, FLAC, OGG, WAV.</b> Tags and cover art travel with the files.</li>
+    <li><b>Streaming services</b> have no files to give; anything you own or have exported works.</li>
+  </ul>
+</template>
+
+<template id="tpl-install">
+  <h1>Install on the unit</h1>
+  <p class="lead">Open this address in the <b>unit's own web browser</b>. It downloads the app; tap it to install.</p>
+  <div class="card big">
+    <div class="url" id="apk-url">http://…:8787/payload/celicadash.apk</div>
+    <div id="qr"></div>
+  </div>
+  <ul class="tips">
+    <li><b>"Blocked" or "unknown sources"?</b> Android asks once to allow installs from the browser - say yes, then tap the download again.</li>
+    <li><b>After install:</b> open Celica Dash. Its Setup finds this PC on its own and offers everything made here.</li>
+    <li><b>Home app.</b> Press the unit's Home button and pick Celica Dash, "Always" - the dash becomes what the ignition opens onto.</li>
+    <li><b>No browser on the unit?</b> Copy <code>setup/payload/celicadash.apk</code> to a USB stick and open it from the unit's file manager.</li>
+  </ul>
+  <details id="adb-box"><summary>The faster way, if the unit allows a PC to connect (adb)</summary>
+    <p>Many units have "USB debugging" or "ADB over network" in Developer options (factory password often 8888, 3368 or 126); the common QF units answer on port 9876 without any of that.</p>
+    <label>The unit's Wi-Fi address <input id="adb-ip" placeholder="192.168.0.xx"> <button id="adb-try">Connect</button></label>
+    <div class="msg" id="adb-msg"></div>
+    <button id="adb-install" class="run" hidden>Install and open the dash on the unit</button>
+    <div class="msg" id="adb-install-msg"></div>
+  </details>
+</template>
+
+<template id="tpl-boot">
+  <h1>Boot splash <span class="tag">QF units only · optional</span></h1>
+  <p class="lead">A "WELCOME, NAME" splash and the dash's boot animation in place of the vendor's. Only for units on the QF (Qianfeng) firmware - the ones with a "Factory settings" menu and zlink.</p>
+  <label>The name on the splash <input data-field="boot.name" placeholder="KADE"></label>
+  <div class="job" data-job="boot">
+    <div class="jobhead"><b>1 · Make the splash and animation</b><button class="run" data-run="boot">Make it</button></div>
+    <small>Needs the image tools once (a small download). A preview lands in <code>setup/payload/boot/preview.png</code>.</small>
+    <div class="bar"><i></i></div><div class="msg"></div>
+  </div>
+  <div class="job" data-job="boot_deploy">
+    <div class="jobhead"><b>2 · Put it on the unit over the network</b><span class="est" id="boot-unit"></span><button class="run" data-run="boot_deploy">Send it</button></div>
+    <small>Needs the unit connected on the Install page (adb). With root it goes straight on, a backup of the old splash saved here first; without, the unit's own importer takes it from a virtual USB disk. Then it reboots itself.</small>
+    <div class="bar"><i></i></div><div class="msg"></div>
+  </div>
+  <ul class="tips">
+    <li><b>No connection to the unit?</b> Copy <code>setup/payload/boot/QF</code> to the root of a FAT32 USB stick, plug it into the unit, and say yes when it offers to import.</li>
+    <li><b>Undo:</b> the backup under <code>setup/payload/boot/backup</code> (root path), or the vendor's own USB import puts theirs back.</li>
+    <li><b>Not a QF unit?</b> Skip this page; the unit's own boot screen stays.</li>
+  </ul>
+  <div class="job" data-job="boot_cleanup" style="opacity:.7"><div class="jobhead"><b>Tidy up</b><button class="quiet" data-run="boot_cleanup">Remove the virtual disk</button></div><div class="msg"></div></div>
+</template>
+
+<template id="tpl-done">
+  <h1>All set</h1>
+  <p class="lead">Leave this window open while the unit fetches. It shows what has been made:</p>
+  <div id="done-list" class="card"></div>
+  <ul class="tips">
+    <li><b>On the unit now:</b> open Celica Dash → Setup → it finds this PC → Fetch everything.</li>
+    <li><b>Later:</b> run RUN ME again any time - to update the map, add music, or change an answer. The unit's Settings › Advanced fetches again.</li>
+    <li><b>Stuck?</b> The <a href="/guide" target="_blank">guide</a> has the long answers.</li>
+  </ul>
+</template>
+<script src="/wizard/qrcode.min.js" charset="utf-8"></script>
+<script src="/wizard/app.js" charset="utf-8"></script>
+</body>
+</html>

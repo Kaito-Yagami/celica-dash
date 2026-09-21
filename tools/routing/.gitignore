@@ -1,0 +1,6 @@
+*.osm.pbf
+graph/
+gb-routing.zip
+.gradle/
+build/
+import.log

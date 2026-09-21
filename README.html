@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Celica Dash · the guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root { --bg:#0E0D0F; --s1:#131216; --s2:#1A191E; --line:#26242B; --red:#D8433C; --tx:#F1EDEA; --dim:#8F8884; --faint:#55504D; --go:#6E9C6A;
+  --sans:"Archivo","Segoe UI",Roboto,Helvetica,Arial,sans-serif; --mono:"IBM Plex Mono","Cascadia Mono",Consolas,monospace; }
+* { box-sizing:border-box }
+body { margin:0; background:var(--bg); color:var(--tx); font:15px/1.5 var(--sans) }
+.wrap { max-width:860px; margin:0 auto; padding:34px 28px 80px }
+h1 { font-size:30px; font-weight:800; letter-spacing:-.01em; margin:0 0 4px } h1 b { color:var(--red) }
+h2 { font-size:19px; font-weight:800; margin:40px 0 10px; padding-top:18px; border-top:1px solid var(--line) }
+h3 { font:500 10.5px var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin:22px 0 8px }
+p.lead { color:var(--dim); margin:0 0 18px }
+ul.tips { list-style:none; padding:0; margin:8px 0 }
+ul.tips li { padding:5px 0 5px 18px; position:relative }
+ul.tips li::before { content:"›"; position:absolute; left:2px; color:var(--red) }
+ol.steps { padding-left:22px } ol.steps li { margin:6px 0 }
+code, kbd { font:12px var(--mono); background:var(--s2); padding:1px 5px; border-radius:2px }
+.card { background:var(--s1); border:1px solid var(--line); padding:12px 16px; margin:12px 0 }
+table { border-collapse:collapse; width:100%; font-size:13.5px; margin:10px 0 }
+th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top }
+th { font:500 10px var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--dim) }
+td.ok { color:var(--go) } td.no { color:var(--dim) }
+.toc { columns:2; font-size:13.5px; margin:14px 0 } .toc a { display:block; color:var(--tx); text-decoration:none; padding:2px 0 }
+a { color:var(--red) }
+.q { font-weight:700; margin:16px 0 4px }
+.mono { font-family:var(--mono); font-size:12px; color:var(--dim) }
+@media (max-width:640px) { .toc { columns:1 } .wrap { padding:22px 16px } }
+</style>
+</head>
+<body><div class="wrap">
+<h1>Celica <b>Dash</b> · the guide</h1>
+<p class="lead">A launcher for an Android head unit: gauges off the engine, an offline map with turn-by-turn, your music, your phone, the fusebox and the workshop manual - dressed as one thing. Made for a 2003 Celica; set up for yours.</p>
+
+<div class="toc">
+<a href="#need">What you need</a><a href="#steps">The four steps</a><a href="#wizard">The wizard, page by page</a><a href="#install">Installing on the unit</a>
+<a href="#using">Using the dash</a><a href="#phone">iPhone and Android</a><a href="#obd">The OBD dongle</a><a href="#boot">Boot splash (QF units)</a>
+<a href="#trouble">Troubleshooting</a><a href="#verified">What has been tried where</a><a href="#credits">Credits and licences</a>
+</div>
+
+<h2 id="need">What you need</h2>
+<ul class="tips">
+<li><b>An Android head unit</b> - any make, Android 9 or newer, landscape. The common budget "QF" units (the ones with a Factory settings menu and zlink for CarPlay) get the most; anything else gets everything but the CarPlay curtain.</li>
+<li><b>A Windows PC or a Mac</b> with Python 3. <code>RUN ME.cmd</code> installs Python for you on Windows if it is missing.</li>
+<li><b>One Wi-Fi for both.</b> The unit fetches everything from the PC. Park near the house, or take a laptop out to the car on your phone's hotspot.</li>
+<li><b>Optional:</b> a Bluetooth ELM327 OBD dongle (v1.5, a few pounds) for the engine gauges; your MP3s; an hour for a country-sized map.</li>
+</ul>
+
+<h2 id="steps">The four steps</h2>
+<ol class="steps">
+<li><b>On the PC:</b> unzip, double-click <code>RUN ME.cmd</code> (Mac: <code>RUN ME.command</code>). The wizard opens in your browser. Answer the pages; the maps and music are made here, where typing is easy.</li>
+<li><b>On the unit:</b> open its web browser and type the address the wizard's Install page shows. Tap the download to install.</li>
+<li><b>Open Celica Dash.</b> Its own short Setup finds the PC on its own, takes your answers, and skips the pages you already did - only what the unit itself must do is left: permissions, the dongle, the fetch, Home.</li>
+<li><b>Make it Home.</b> Setup's last-but-one page asks; or press the unit's Home button, pick Celica Dash, "Always". The ignition now opens onto the dash.</li>
+</ol>
+<ul class="tips"><li><b>Nothing is final.</b> Every answer is in the dash's Settings ⚙ again, and RUN ME can be run again any time to update the map or add music.</li></ul>
+
+<h2 id="wizard">The wizard, page by page</h2>
+<ul class="tips">
+<li><b>Your car.</b> A preset fills it in - Celica 2ZZ (lift at 6,000), Celica 1ZZ (no lift; nothing turns red), or another car. Change the name on the strip, the labels, the redline. Asterisks colour a part: <code>CELICA *T*-SPORT</code> lights the T. Pick the stock wireframe or the one with the GT wing.</li>
+<li><b>Where you drive.</b> Type your country, state or county. It sets the map, the routing, the search, where the map opens and the units. Big countries: pick a state for the routing (it needs memory); the map itself can be the whole country.</li>
+<li><b>The look.</b> Ink or Contrast; any accent; any background. The unit's Setup shows them live.</li>
+<li><b>Your phone.</b> iPhone → CarPlay; Android → Android Auto; neither. See <a href="#phone">below</a>.</li>
+<li><b>Offline maps.</b> Three jobs. The map: a county ~50 MB in minutes, a country a gigabyte or more in an hour. Routing: turn-by-turn; about 6× the extract's size in memory. Places: quick; every town, pub and fuel station for the search and the map icons. Downloads happen once and stay in <code>setup/tools</code>.</li>
+<li><b>Music.</b> Drop MP3s (or a zip of them) on the page, name the folder, Pack. They land in the unit's Music folder and the dash plays them itself.</li>
+<li><b>Install.</b> The address and QR code for the unit's browser; the adb fast path if the unit allows it.</li>
+<li><b>Boot splash.</b> QF units only; see <a href="#boot">below</a>.</li>
+</ul>
+
+<h2 id="install">Installing on the unit</h2>
+<h3>The browser way - works on every unit</h3>
+<ul class="tips">
+<li>Open the unit's browser (Chrome, or the vendor's) and type the address from the Install page, e.g. <code>http://192.168.0.28:8787/payload/celicadash.apk</code>.</li>
+<li>Tap the download when it finishes. Android may ask to allow installs from the browser once - allow, then tap the download again.</li>
+<li>Open Celica Dash from the app list. Setup begins.</li>
+</ul>
+<h3>The adb way - faster, if the unit allows a PC to connect</h3>
+<ul class="tips">
+<li>Many units have <b>USB debugging</b> or <b>ADB over network</b> in Developer options (Settings › About › tap the build number seven times; some vendors want a factory password first: 8888, 3368 or 126 are the usual ones).</li>
+<li>The common QF units answer a PC on port 9876 without any of that - the wizard tries it.</li>
+<li>Type the unit's Wi-Fi address on the Install page, Connect, then "Install and open the dash". On a QF unit this also grants the overlay and compiles the dash to native, so it starts in a second.</li>
+<li>On the unit, Setup's helper page wants only the PC's address (no port) - it tries the helper's usual port and its fallbacks by itself.</li>
+</ul>
+<h3>The USB way - no network on the unit at all</h3>
+<ul class="tips"><li>Copy <code>setup/payload/celicadash.apk</code> to a USB stick, open it from the unit's file manager. The map and music still need the Wi-Fi, or the "Import from a file" rows under Settings › Map with the files on the stick (<code>setup/payload/map.pmtiles</code>, <code>routing.zip</code>).</li></ul>
+
+<h2 id="using">Using the dash</h2>
+<ul class="tips">
+<li><b>Home.</b> The car, speed, revs, coolant; what is playing; the weather (the unit needs internet once in a while for it - the phone's hotspot does).</li>
+<li><b>Drive.</b> Six faces for the engine - Classic, Sweep, Numbers, Track, Theatre, Analogue - under Settings › Style. Records drives; replays them on the map.</li>
+<li><b>Map.</b> Offline, 3D, heading-up. Tap to wake the controls. Hold a spot to pin it; tap a pin or a fuel stop → GO for turn-by-turn, spoken if the unit has a voice. ● records a drive; ≡ lists drives and pins; the magnifier searches places.</li>
+<li><b>Media.</b> What the phone plays over Bluetooth, and the Library - your own songs, played by the dash.</li>
+<li><b>Phone.</b> Pairing, the link, and the CarPlay / Android Auto button.</li>
+<li><b>Garage.</b> The fusebox, the service log, the specifications and the checklist - the Celica pack; another car keeps the service log.</li>
+<li><b>Manual.</b> The workshop manual, searchable, every page a figure you can pinch.</li>
+<li><b>Hold the car's label on Home</b> for a demo drive - revs, a map trail, no dongle needed.</li>
+<li><b>Settings ⚙</b> top right: Style, Car, Phone, Map, Weather, Advanced (the PC helper, the fetches, Setup again, diagnostics).</li>
+</ul>
+
+<h2 id="phone">iPhone and Android</h2>
+<h3>Music and calls</h3>
+<ul class="tips">
+<li>Pair the phone with the unit as you always did (the unit's Bluetooth settings, or the dash's Phone tab). Music and calls go through the unit's own Bluetooth.</li>
+<li>For the dash to <b>show what is playing</b>, grant <b>Notification access</b> - Setup asks, or Settings › Phone.</li>
+</ul>
+<h3>CarPlay (iPhone)</h3>
+<ul class="tips">
+<li>The unit's own CarPlay app does the connecting; the dash's button opens it. On QF units the dash covers zlink's "connect your phone" page with its own screen and comes down onto CarPlay once the phone is on - and can <b>Cut</b> the session cleanly, which brings music back to Bluetooth.</li>
+<li>First time: iPhone › Settings › General › CarPlay › the unit's name. It comes on its own after that.</li>
+<li><b>GPS:</b> units hear GPS poorly behind glass. The <b>GPS2IP</b> app on the iPhone can stand in - over Bluetooth alongside CarPlay, or over the phone's hotspot (not with wireless CarPlay: the phone cannot host a hotspot and sit on the unit's Wi-Fi at once). Pick it on the unit under Setup › Phone or Settings › Map.</li>
+</ul>
+<h3>Android Auto</h3>
+<ul class="tips">
+<li>Same idea: the unit's Android Auto app does the connecting, the dash's button opens it. Phone › Settings › Connected devices › Android Auto, then pair the unit.</li>
+<li>On QF units the dash runs the same curtain over zlink for Android Auto. <b>This has not been tried on a real Android phone yet</b> - if it misbehaves, Settings › Phone › Neither, and open the unit's own app from "All apps".</li>
+</ul>
+
+<h2 id="obd">The OBD dongle</h2>
+<ul class="tips">
+<li>A classic-Bluetooth ELM327 in the socket under the dash (usually by the driver's knees). The v1.5 clones are the safe buy; some "v2.1" ones lie about what they support.</li>
+<li>Pair it in the unit's Bluetooth settings - it asks for a PIN: <b>1234</b>, else <b>0000</b> (a few use 6789; some print it on the dongle) - then pick it in Setup or Settings › Car. The dash reads speed, revs, coolant, intake, throttle, fuel trims, and stored fault codes (which it can clear).</li>
+<li>Without one the dash still shows road speed from GPS.</li>
+</ul>
+
+<h2 id="boot">Boot splash - QF units only</h2>
+<ul class="tips">
+<li>Only for the QF (Qianfeng) firmware: a Factory settings menu, zlink, "Car Settings" with a USB import. Elsewhere, skip it - the unit's own boot screen stays.</li>
+<li>The wizard's Boot page makes a "WELCOME, NAME" splash and the dash's boot animation, then <b>sends them over the network</b> when the unit was connected on the Install page: with root (the common QF units answer on port 9876) it goes straight on, a backup of the old splash saved to <code>setup/payload/boot/backup</code> first; without root the unit's own importer takes it from a virtual USB disk. It reboots itself.</li>
+<li><b>No connection?</b> Copy <code>setup/payload/boot/QF</code> to the <b>root of a FAT32 USB stick</b>, plug it into the unit, and say yes when Car Settings offers to import.</li>
+<li><b>Undo:</b> the backup the wizard kept, or the vendor's own USB import puts theirs back; a firmware update always will.</li>
+</ul>
+
+<h2 id="trouble">Troubleshooting</h2>
+<p class="q">The unit's Setup does not find the PC.</p>
+<ul class="tips"><li>Both on the same Wi-Fi? The PC's page shows its address; the unit's Setup shows the unit's. Same first three numbers means the same network. Type the PC's address into the unit's Setup. Windows may have asked "allow this app on private networks" the first time RUN ME started - say yes. Some hotspots block devices from seeing each other ("client isolation"); a home router does not.</li></ul>
+<p class="q">The map is blank.</p>
+<ul class="tips"><li>The tiles are still coming (the Fetch page shows), or were never made, or the car is outside the region you chose. Settings › Advanced › Find the helper, then fetch the map. The map's caption names the region it holds.</li></ul>
+<p class="q">The routing job fails, or says the PC needs more memory.</p>
+<ul class="tips"><li>The graph is built in memory, about six times the extract's size: a county in seconds, England in a few minutes with 8 GB, all of Germany or France wants 16 GB or more. Pick a smaller region for routing; the map itself can stay the whole country.</li></ul>
+<p class="q">My songs do not show in the Library.</p>
+<ul class="tips"><li>Setup › Permissions › "Music on the unit" must be granted (Settings › Phone › Access). The songs land in <code>Music/&lt;folder&gt;</code> on the unit; the Library re-reads it when opened.</li></ul>
+<p class="q">"What is playing" is empty though the phone is playing.</p>
+<ul class="tips"><li>Notification access - Settings › Phone › Access › Notification access, tick Celica Dash.</li></ul>
+<p class="q">The unit shows "Device is starting…" for a moment after the boot animation.</p>
+<ul class="tips"><li>Android's stand-in launcher, while the storage unlocks. The dash is built to take that slot (it is "direct-boot aware"); the moment shortens once the dash is Home and has started once. On QF units the adb install path also compiles the dash to native, which takes the cold start from nine seconds to one.</li></ul>
+<p class="q">The unit asks for the Wi-Fi password every boot (QF units).</p>
+<ul class="tips"><li>A factory bug: the unit cannot save its Wi-Fi settings because a key in its keystore was made on another machine. The fix needs the root door (adb on port 9876): delete the two files named <code>…WifiConfigStore…</code> under <code>/data/misc/keystore/user_0/</code> and reboot; the next save mints a fresh key. Only on a unit that has the problem, and take a copy first.</li></ul>
+<p class="q">CarPlay or Bluetooth audio stopped working after a change in the Factory settings menu.</p>
+<ul class="tips"><li>Put the Bluetooth options back the way they were (the unit reboots), then power it fully off and on - some of those settings only take on a cold start. Forget the unit on the phone and pair again. The dash's Settings › Advanced › Diagnostics has a "Bluetooth (vendor)" line that says what the unit's radio is set to.</li></ul>
+<p class="q">The screen is a different size than 1024×600.</p>
+<ul class="tips"><li>The dash scales itself to any landscape screen (1280×720, 1920×1080, 2000×1200 all lay out); Settings › Style › Size nudges it. Portrait units are not supported.</li></ul>
+<p class="q">I want the old launcher back.</p>
+<ul class="tips"><li>Settings › Phone › Home app, pick the vendor's. Or uninstall Celica Dash like any app. Nothing of the unit's was changed except what you asked for (Home, the wallpaper if you said yes, the boot splash if you imported it).</li></ul>
+
+<h2 id="verified">What has been tried where</h2>
+<p class="lead">Honest accounting. "Owner's unit" is the ROCO K706 (QF firmware, Android 10, 1024×600) this was written on; "emulator" is a head-unit-shaped Android 13 emulator.</p>
+<table>
+<tr><th>Thing</th><th>Owner's unit</th><th>Emulator</th><th>Other units</th></tr>
+<tr><td>Gauges off the ELM327, faces, drive recording and replay</td><td class="ok">yes, months of it</td><td class="no">no Bluetooth there</td><td class="no">expected; the OBD side is standard</td></tr>
+<tr><td>Offline map, search, routing made by RUN ME</td><td class="no">not yet (the original build carries the same code)</td><td class="ok">yes - Northamptonshire end to end</td><td class="no">expected</td></tr>
+<tr><td>Setup finds the helper, fetches the payload</td><td class="no">not yet</td><td class="ok">yes (typed address; the beacon cannot cross the emulator)</td><td class="no">expected</td></tr>
+<tr><td>CarPlay through the curtain, Cut, sweeps</td><td class="ok">yes (the original build; same code)</td><td>-</td><td class="no">QF units expected; others get a plain launch</td></tr>
+<tr><td>Android Auto through the curtain</td><td class="no">no Android phone to try</td><td>-</td><td class="no">untested</td></tr>
+<tr><td>Music copied by Setup into the Music folder</td><td class="no">not yet (the original copied it by adb)</td><td class="no">not yet</td><td class="no">expected</td></tr>
+<tr><td>Boot splash over the network (root path)</td><td class="ok">yes - splash and animation, by adb</td><td>-</td><td class="no">QF units with root expected</td></tr>
+<tr><td>Boot splash via the virtual USB disk (no root), or a real stick</td><td class="no">not run; the importer is the vendor's own</td><td>-</td><td class="no">untested</td></tr>
+<tr><td>1ZZ preset, other cars, other colours</td><td class="no">-</td><td class="ok">yes</td><td class="no">expected</td></tr>
+</table>
+
+<h2 id="credits">Credits and licences</h2>
+<ul class="tips">
+<li>Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, ODbL. Map tiles from <a href="https://protomaps.com">Protomaps</a>; extracts from <a href="https://download.geofabrik.de">Geofabrik</a>.</li>
+<li>Drawn with <a href="https://maplibre.org">MapLibre</a> (BSD), routed with <a href="https://www.graphhopper.com">GraphHopper</a> 1.0 (Apache 2.0), tiles cut with <a href="https://github.com/protomaps/go-pmtiles">go-pmtiles</a> (BSD). Weather from <a href="https://open-meteo.com">Open-Meteo</a>. Fonts: Archivo, IBM Plex Mono, Michroma, Noto Sans (SIL OFL). QR codes by qrcodejs (MIT).</li>
+<li>The workshop manual in the Celica pack is Toyota's RM744U1/U2 (2000 US-market Celica), for personal reference.</li>
+<li>Full texts in the <code>LICENSES</code> folder.</li>
+</ul>
+</div></body>
+</html>
