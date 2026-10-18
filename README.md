@@ -1,4 +1,5 @@
 # Celica Dash
+https://www.reddit.com/r/Celica/comments/1wm11ir/custom_infotainment/
 
 A launcher for the Android head unit in your car: gauges straight off the engine, an offline map
 with turn-by-turn, your music, your phone, the fusebox and the workshop manual — all dressed as
